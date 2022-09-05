@@ -2,12 +2,12 @@
 #include <string>
 #include <iostream>
 #include <vector>
-#include <list>
 #include <ctime>
+//#include <list>
 
 namespace model {
 
-
+	
 
 
 
@@ -73,18 +73,10 @@ namespace model {
 		std::string Color;
 		int Dimensions;
 	};
-	//—клад
-	class Stock {
-	public:
-		Stock(){}
-		Stock(std::list<Product> list);
-	private:
-		std::list<Product> List;
-	};
 	//торгова€ позици€
 	class TradePos {
 	public:
-		TradePos(){}
+		TradePos() {}
 		TradePos(Product product, int amount, std::string impPeriod, float deliveryPrice);
 		void setProduct(Product product) {
 			Product_ = product;
@@ -110,24 +102,72 @@ namespace model {
 		const float getDeliveryPrice() {
 			return DeliveryPrice;
 		}
-	private:
-		Product Product_;
-		int Amount;
-		std::string ImpPeriod;
-		float DeliveryPrice;
+		//методы
 		
+
+	private:
+		Product Product_; //товар
+		int Amount;//количество
+		std::string ImpPeriod;//дата продажи
+		float DeliveryPrice;//цена поставки
+
 	};
+	
+	//—клад
+	
+	class Stock {
+	public:
+		Stock(){}
+		Stock(std::vector<TradePos> list);
+		Stock getListTrPos() {
+			return ListTrPos;
+		}
+		//добавление торговой позиции на склад
+		void addProduct(TradePos list) {
+			ListTrPos.push_back(list);
+		}
+		//изменение торговой позиции
+		//void changeInTrPos(TradePos list, std::string name) {
+		//	for (auto it : ListTrPos) {
+		//		if ( == name) {
+		//			std::cout << "“акой пользователь существует!" << std::endl;
+		//			return;
+		//		}
+		//
+		//	}
+		//}
+		//поиск торговой позиции
+		//void SearchTP(std::string name) {
+		//	for (auto it : ListTrPos) {
+		//			if (it.getProduct() == name) {
+		//				std::cout << "“акой товар есть!" << std::endl;
+		//				return;
+		//			}
+		//		
+		//	}
+		//}
+		//
+
+		
+	private:
+		std::vector<TradePos> ListTrPos;
+	};
+	
 	//чек
 	class Cheque {
 	public:
 		Cheque(){}
 		Cheque(std::vector<TradePos> list);
+		
+		
 		//¬ывод чека
-		void printCheque(std::vector<TradePos> list) {
+		void printCheque(std::vector<TradePos> list);
 
-		}
 	private:
-		std::vector<TradePos> List;
+		std::vector<TradePos> List;//торгова€ позици€
+		Employees Name;//кто продал
+		std::string time;//¬рем€ продажи
+		
 	};
 	//система безопасности
 	class Security {

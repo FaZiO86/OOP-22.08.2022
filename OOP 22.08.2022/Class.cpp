@@ -17,13 +17,14 @@ using namespace model;
 		Dimensions = dimensions;
 	}
 
-	Stock::Stock(std::list<Product> list) {
-		for (auto& el : list) {
-			List = list;
+	Stock::Stock(std::vector<TradePos> list) {
+		for (auto el : list) {
+			ListTrPos = list;
 		}
 	}
 
 	Cheque::Cheque(std::vector<TradePos> list) {
+		//правильно?
 		for (auto& el : list) {
 			List = list;
 		}
@@ -79,6 +80,12 @@ using namespace model;
 		}
 		std::cout << "“акого пользовател€ нет!" << std::endl;
 		
+	}
+	//вывод чека
+	void Cheque::printCheque(std::vector<TradePos> list) {
+		//for (auto el : list) {
+		//	 
+		//}
 	}
 
 	

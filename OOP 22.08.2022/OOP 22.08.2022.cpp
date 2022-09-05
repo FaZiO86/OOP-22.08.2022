@@ -2,8 +2,8 @@
 #include <string>
 #include "class.h"
 #include <ctime>
-#include <vector>
-#include <list>
+//#include <vector>
+
 
 
 using namespace model;
@@ -15,15 +15,17 @@ int main(){
     Employees people1 = {123456,"Александр", "Al"};
     Employees people2 = { 4321, "Валера", "Val" };
     Employees people3 = { 12312,"Буратино", "Bool" };
+    Employees people4 = { 2934,"Директор", "Dir" };
     Security list;
    ////////////////////////////////////////////////////////////////////
     //list.addHuman(people1);
     //list.addHuman(people2);
     //list.addHuman(people3);                           //безопасность
+    //list.addHuman(people4);
     //list.deleteHuman("Bool");
     //list.print();
-   // list.findEmployee("dfgdf");
-   // list.print();
+    //list.findEmployee("dfgdf");
+    //list.print();
    ///////////////////////////////////////////////////////////////////// 
 
     
@@ -34,11 +36,14 @@ int main(){
    TradePos  tr1 = { rose1, 10, "21.08.2022" ,120.10};
    TradePos tr2 = { rose2, 5, "21.07.2022", 90.50 };
    TradePos tr3 = { rose3, 30, "14.05.2022", 200 };
-
+   Stock st;
+   st.addProduct(tr1);
+   st.addProduct(tr2);
+   st.addProduct(tr3);
    
     
     
-    
+    //сделать меню
     
     ///////////////////////////////////////////////////////////////////
 }
