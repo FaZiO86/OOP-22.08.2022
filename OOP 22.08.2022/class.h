@@ -109,8 +109,8 @@ namespace model {
 		void setProduct(Product product) {
 			Product_ = product;
 		}
-		const Product getProduct() {
-			return Product_;
+		Product *getProduct() {
+			return &Product_;
 		}
 		void setAmount(int amount) {
 			Amount = amount;
@@ -165,7 +165,7 @@ namespace model {
 		void deleteTP(TradePos & obj) {
 			auto place = std::find_if(ListTrPos.begin(), ListTrPos.end(),
 				[obj](const TradePos& tmp) {
-					return obj.Product_;
+					return obj.getProduct() == tmp.getProduct();
 				});
 		}
 		
