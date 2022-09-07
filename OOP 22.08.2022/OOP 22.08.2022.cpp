@@ -18,14 +18,15 @@ int main(){
     Employees people4 = { 2934,"Директор", "Dir" };
     Security list;
    ////////////////////////////////////////////////////////////////////
-    //list.addHuman(people1);
-    //list.addHuman(people2);
-    //list.addHuman(people3);                           //безопасность
-    //list.addHuman(people4);
-    //list.deleteHuman("Bool");
-    //list.print();
-    //list.findEmployee("dfgdf");
-    //list.print();
+    list.addHuman(people1);
+    list.addHuman(people2);
+    list.addHuman(people3);                           //безопасность
+    list.addHuman(people4);
+    list.deleteHuman("Bool");
+    list.print();
+    list.findEmployee("dfgdf");
+    list.print();
+    cout << "\n\n";
    ///////////////////////////////////////////////////////////////////// 
 
     
@@ -36,17 +37,31 @@ int main(){
    TradePos  tr1 = { rose1, 10, "21.08.2022" ,120.10};
    TradePos tr2 = { rose2, 5, "21.07.2022", 90.50 };
    TradePos tr3 = { rose3, 30, "14.05.2022", 200 };
-   TradePos sTR = { rose1, 10, "21.08.2022" ,120.10 };
+   TradePos sTR = { rose1, 5, "21.08.2022" ,120.10 };
    Stock st;
    st.addTP(tr1);
    st.addTP(tr2);
    st.addTP(tr3);
    st.showStock();
-   st.deleteTP(sTR);
-   st.showStock();
-   //tr1.showTradePos();
+   //st.deleteTP(sTR);
+   //st.showStock();
    
-  
+   
+   
+   //поиск по складу позиции и после, добавление в чек.
+   //Cheque ch = { st.getStock(), people1, 4};
+   Cheque ch;
+   ch.addPosInCheck(st, tr1, people3, 4);//склад, что покупаем,кто продаёт, сколько штук
+   cout << "_________ЧЕК________\n";
+   ch.printCheque();
+   cout << "\n____________________\n";
+   cout << "\n\n";
+   ch.addPosInCheck(st, tr3, people1, 3);
+   cout << "_________ЧЕК________\n";
+   ch.printCheque();
+   cout << "\n____________________\n";
+   cout << "\n\n";
+   st.showStock();
     
     
     //сделать меню

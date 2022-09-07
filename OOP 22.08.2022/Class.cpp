@@ -20,15 +20,16 @@ using namespace model;
 	Stock::Stock(std::vector<TradePos> list) {
 		for (auto el : ListTrPos) {
 			ListTrPos = list;
-			//ListTrPos.emplace_back(list);
 		}
 	}
 
-	Cheque::Cheque(std::vector<TradePos> list) {
+	Cheque::Cheque(std::vector<TradePos> &list, Employees name, int count) {
 		//правильно?
-		for (auto& el : list) {
+		//for (auto el : List) {
 			List = list;
-		}
+		//}
+		Name = name.getName();
+		Count = count;
 	}
 
 	Security::Security(std::vector<Employees> humans) {
@@ -89,11 +90,27 @@ using namespace model;
 			std::cout << el.getProduct() << ". кол-во: " << el.getAmount() << std::endl;
 		}
 	}
+	//удаление торговой позиции
+	void Stock::deleteTP(TradePos& obj) {
+		auto place = std::find(ListTrPos.begin(), ListTrPos.end(), obj);
+		if (place != ListTrPos.end()) {
+			ListTrPos.erase(place);   
+			std::cout << "Позиция удалена со склада!" << std::endl;
+		}
+		else {
+			std::cout << "Такой позиции нет на складе!" << std::endl;
+		}
+	}
 	//вывод чека
-	void Cheque::printCheque(std::vector<TradePos> list) {
-		//for (auto el : list) {
-		//	 
-		//}
+	void Cheque::printCheque() {
+		for (auto el : List) {
+			std::cout << "Наименование товара: " << el.getProduct()
+				<< "\nЦена за штуку: " << el.getDeliveryPrice()
+				<< "\nОбщая стоимость товара: " << el.getDeliveryPrice() * Count
+				<< "\nкол-во: "<<  Count 
+				<< "\nДата продажи: " << el.getImpPeriod() 
+				<< "\nПродал: " << getName();
+		}
 	}
 
 

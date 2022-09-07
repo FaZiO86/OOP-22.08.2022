@@ -97,7 +97,7 @@ namespace model {
 		bool operator==(const TradePos other) {
 			
 			return this->Product_ == other.Product_ && 
-				this->Amount == other.Amount &&
+				/*this->Amount == other.Amount &&*/
 				this->DeliveryPrice == other.DeliveryPrice && 
 				this->ImpPeriod == other.ImpPeriod;
 				
@@ -152,7 +152,13 @@ namespace model {
 	public:
 		Stock(){}
 		Stock(std::vector<TradePos> list);
-		
+		TradePos operator [](int i) {
+			return ListTrPos[i];
+		}
+		Stock getStock() {
+			return ListTrPos;
+		}
+
 		//показать список торговых позиций на складе всего!
 		void showStock();
 		
@@ -162,18 +168,20 @@ namespace model {
 		}
 		
 		//”даление торговой позиции
-		void deleteTP(TradePos & obj) {
-			auto place = std::find(ListTrPos.begin(), ListTrPos.end(),obj);
+		void deleteTP(TradePos& obj);
+		
+		//поиск торговой позиции
+		auto findPos(TradePos pos) {
+			auto place = std::find(ListTrPos.begin(), ListTrPos.end(), pos);
 			if (place != ListTrPos.end()) {
-				ListTrPos.erase(place);
+				std::cout << "ѕозици€ найдена!" << std::endl;
+				return true;
+			}
+			else {
+				std::cout << "“акой позиции нет на складе!" << std::endl;
+				return false;
 			}
 		}
-		
-		//изменение торговой позиции
-		
-		
-		
-
 		
 	private:
 		std::vector<TradePos> ListTrPos;
@@ -183,17 +191,49 @@ namespace model {
 	class Cheque {
 	public:
 		Cheque(){}
-		Cheque(std::vector<TradePos> list);
+		Cheque(std::vector<TradePos> &list, Employees name, int Count);
+		void setCount(int count) {
+			Count = count;
+		}
+		const int getCount() {
+			return Count;
+		}
+		void setTime(std::string time) {
+			Time = time;
+		}
+		std::string getTime() {
+			return Time;
+		}
+		void setName(Employees name) {
+			Name = name.getName();
+		}
+		std::string getName() {
+			return Name;
+		}
+		//добавление позиции в чек
+		void addPosInCheck(Stock &list, TradePos &other, Employees name, int count) {//склад, что покупаем, сколько штук
+			if (list.findPos(other) == true) {
+				List.emplace_back(other);
+				Count = count;
+				//other.setAmount(count);
+				list.deleteTP(other);
+				Name = name.getName();
+			}
+			else {
+				std::cout << "“акого товара нет!";
+			}
+			
+		}
 		
-		
+
 		//¬ывод чека
-		void printCheque(std::vector<TradePos> list);
+		void printCheque();
 
 	private:
-		std::vector<TradePos> List;//торгова€ позици€
-		Employees Name;//кто продал
-		std::string time;//¬рем€ продажи
-		
+		std::vector<TradePos> List;//позици€ в чеке
+		std::string Name;//кто продал
+		std::string Time;//¬рем€ продажи
+		int Count;
 	};
 	//система безопасности
 	class Security {
