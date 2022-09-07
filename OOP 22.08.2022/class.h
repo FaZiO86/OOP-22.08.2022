@@ -1,9 +1,7 @@
 #pragma once
 #include <string>
-#include <iostream>
 #include <vector>
-#include <ctime>
-//#include <list>
+#include <iostream>
 
 namespace model {
 
@@ -44,6 +42,17 @@ namespace model {
 	//товары
 	class Product {
 	public:
+		friend std::ostream& operator<<(std::ostream& out, const Product& r) {
+			return out << r.Name << " " << r.Color;
+		}
+		
+		bool operator==(const Product& other) {
+
+			return this->Name == other.Name &&
+				this->Color == other.Color &&
+				this->Dimensions == other.Dimensions;
+			
+		}
 		Product(){}
 		Product(std::string name, std::string color, int dimensions);
 		void setName(std::string name) {
@@ -66,18 +75,37 @@ namespace model {
 		}
 									//Методы
 		//показать товар    можно не делать...
+		void showProduct() {
+			std::cout << getName() << " ";
+			std::cout << getColor() << " ";
+			std::cout << getDimensions() << " ";
+		}
+		
 		
 
 	private:
 		std::string Name;
 		std::string Color;
-		int Dimensions;
+		int Dimensions; //размер
 	};
 	//торговая позиция
 	class TradePos {
 	public:
-		TradePos() {}
+		friend std::ostream& operator<<(std::ostream& out, const TradePos& r) {
+			return out << r.Product_ << r.Amount;
+		}
+		bool operator==(const TradePos other) {
+			
+			return this->Product_ == other.Product_ && 
+				this->Amount == other.Amount &&
+				this->DeliveryPrice == other.DeliveryPrice && 
+				this->ImpPeriod == other.ImpPeriod;
+				
+		}
+		
+		TradePos(){};
 		TradePos(Product product, int amount, std::string impPeriod, float deliveryPrice);
+		
 		void setProduct(Product product) {
 			Product_ = product;
 		}
@@ -103,8 +131,13 @@ namespace model {
 			return DeliveryPrice;
 		}
 		//методы
+		void showTradePos() {
+			std::cout << Product_ << " " << getAmount() << " " << getDeliveryPrice();
+		}
+		///
 		
-
+		
+		
 	private:
 		Product Product_; //товар
 		int Amount;//количество
@@ -119,34 +152,27 @@ namespace model {
 	public:
 		Stock(){}
 		Stock(std::vector<TradePos> list);
-		Stock getListTrPos() {
-			return ListTrPos;
-		}
+		
+		//показать список торговых позиций на складе всего!
+		void showStock();
+		
 		//добавление торговой позиции на склад
-		void addProduct(TradePos list) {
-			ListTrPos.push_back(list);
+		void addTP(TradePos &list) {
+			ListTrPos.emplace_back(list);
 		}
+		//Удаление торговой позиции
+		
+		void deleteTP(TradePos & obj) {
+			auto place = std::find_if(ListTrPos.begin(), ListTrPos.end(),
+				[obj](const TradePos& tmp) {
+					return obj.Product_;
+				});
+		}
+		
 		//изменение торговой позиции
-		//void changeInTrPos(TradePos list, std::string name) {
-		//	for (auto it : ListTrPos) {
-		//		if ( == name) {
-		//			std::cout << "Такой пользователь существует!" << std::endl;
-		//			return;
-		//		}
-		//
-		//	}
-		//}
-		//поиск торговой позиции
-		//void SearchTP(std::string name) {
-		//	for (auto it : ListTrPos) {
-		//			if (it.getProduct() == name) {
-		//				std::cout << "Такой товар есть!" << std::endl;
-		//				return;
-		//			}
-		//		
-		//	}
-		//}
-		//
+		
+		
+		
 
 		
 	private:

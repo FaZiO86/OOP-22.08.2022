@@ -1,7 +1,7 @@
 #include "class.h"
 #include <string>
 #include <algorithm>
-//#include <ostream>
+//#include <iostream>
 //#include <vector>
 using namespace model;
 
@@ -18,8 +18,9 @@ using namespace model;
 	}
 
 	Stock::Stock(std::vector<TradePos> list) {
-		for (auto el : list) {
+		for (auto el : ListTrPos) {
 			ListTrPos = list;
+			//ListTrPos.emplace_back(list);
 		}
 	}
 
@@ -81,11 +82,20 @@ using namespace model;
 		std::cout << "“акого пользовател€ нет!" << std::endl;
 		
 	}
+	//просмотр всех позиций на складе
+	void Stock::showStock() {
+		std::cout << "—писок товаров на складе:\n";
+		for (auto el : ListTrPos) {
+			std::cout << el.getProduct() << ". кол-во: " << el.getAmount() << std::endl;
+		}
+	}
 	//вывод чека
 	void Cheque::printCheque(std::vector<TradePos> list) {
 		//for (auto el : list) {
 		//	 
 		//}
 	}
+
+
 
 	
