@@ -47,7 +47,7 @@ namespace model {
 		}
 		
 		bool operator==(const Product& other) {
-
+		
 			return this->Name == other.Name &&
 				this->Color == other.Color &&
 				this->Dimensions == other.Dimensions;
@@ -160,13 +160,17 @@ namespace model {
 		void addTP(TradePos &list) {
 			ListTrPos.emplace_back(list);
 		}
-		//Удаление торговой позиции
 		
+		//Удаление торговой позиции
 		void deleteTP(TradePos & obj) {
+			//???
 			auto place = std::find_if(ListTrPos.begin(), ListTrPos.end(),
 				[obj](const TradePos& tmp) {
-					return obj.getProduct() == tmp.getProduct();
+					return obj;
 				});
+			if (place != ListTrPos.end()) {
+				ListTrPos.erase(place);
+			}
 		}
 		
 		//изменение торговой позиции
