@@ -42,7 +42,7 @@ int main(){
    st.addTP(tr2);
    st.addTP(tr3);
    st.showStock();
-   st.deleteTP(tr1);
+   st.deleteTP(sTR);
    st.showStock();
    //tr1.showTradePos();
    
