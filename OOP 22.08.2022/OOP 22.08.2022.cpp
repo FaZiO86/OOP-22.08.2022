@@ -2,9 +2,6 @@
 #include <string>
 #include "class.h"
 #include <ctime>
-//#include <vector>
-
-
 
 using namespace model;
 using namespace std;
@@ -12,9 +9,9 @@ using namespace std;
 int main(){
     setlocale(LC_ALL, "ru");
     
-    Employees people1 = {123456,"Александр", "Al"};
-    Employees people2 = { 4321, "Валера", "Val" };
-    Employees people3 = { 12312,"Буратино", "Bool" };
+    Employees people1 = {123456,"Кладовщик", "kl"};
+    Employees people2 = { 4321, "Охранник", "sec" };
+    Employees people3 = { 12312,"Продавец", "sel" };
     Employees people4 = { 2934,"Директор", "Dir" };
     Security list;
    ////////////////////////////////////////////////////////////////////
@@ -46,24 +43,23 @@ int main(){
    //st.deleteTP(sTR);
    //st.showStock();
    
-   
-   
    //поиск по складу позиции и после, добавление в чек.
-   //Cheque ch = { st.getStock(), people1, 4};
    Cheque ch;
-   ch.addPosInCheck(st, tr1, people3, 4);//склад, что покупаем,кто продаёт, сколько штук
+   ch.addPosInCheck(st, tr1, people3, 3);//склад, что покупаем,кто продаёт, сколько штук
    cout << "_________ЧЕК________\n";
    ch.printCheque();
    cout << "\n____________________\n";
    cout << "\n\n";
-   ch.addPosInCheck(st, tr3, people1, 3);
+   ch.addPosInCheck(st, tr3, people1, 10);
    cout << "_________ЧЕК________\n";
    ch.printCheque();
    cout << "\n____________________\n";
    cout << "\n\n";
    st.showStock();
-    
-    
+   ch.deletePosInCheck(tr2, 5);
+   cout << "_________ЧЕК________\n";
+   ch.printCheque();
+   cout << "\n____________________\n";
     //сделать меню
     
     ///////////////////////////////////////////////////////////////////

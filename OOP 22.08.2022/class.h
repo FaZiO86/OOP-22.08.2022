@@ -5,11 +5,7 @@
 
 namespace model {
 
-	
-
-
-
-	//сотрпудники
+	//сотрудники
 	class Employees {
 	public:
 		Employees() {}
@@ -45,7 +41,6 @@ namespace model {
 		friend std::ostream& operator<<(std::ostream& out, const Product& r) {
 			return out << r.Name << " " << r.Color;
 		}
-		
 		bool operator==(const Product& other) {
 		
 			return this->Name == other.Name &&
@@ -74,15 +69,8 @@ namespace model {
 			return Dimensions;
 		}
 									//Методы
-		//показать товар    можно не делать...
-		void showProduct() {
-			std::cout << getName() << " ";
-			std::cout << getColor() << " ";
-			std::cout << getDimensions() << " ";
-		}
-		
-		
-
+		//показать товар
+		void showProduct();
 	private:
 		std::string Name;
 		std::string Color;
@@ -102,10 +90,8 @@ namespace model {
 				this->ImpPeriod == other.ImpPeriod;
 				
 		}
-		
 		TradePos(){};
 		TradePos(Product product, int amount, std::string impPeriod, float deliveryPrice);
-		
 		void setProduct(Product product) {
 			Product_ = product;
 		}
@@ -134,7 +120,7 @@ namespace model {
 		void showTradePos() {
 			std::cout << Product_ << " " << getAmount() << " " << getDeliveryPrice();
 		}
-		///
+		
 		
 		
 		
@@ -145,9 +131,7 @@ namespace model {
 		float DeliveryPrice;//цена поставки
 
 	};
-	
 	//Склад
-	
 	class Stock {
 	public:
 		Stock(){}
@@ -158,82 +142,61 @@ namespace model {
 		Stock getStock() {
 			return ListTrPos;
 		}
-
 		//показать список торговых позиций на складе всего!
 		void showStock();
-		
 		//добавление торговой позиции на склад
 		void addTP(TradePos &list) {
 			ListTrPos.emplace_back(list);
 		}
-		
 		//Удаление торговой позиции
-		void deleteTP(TradePos& obj);
-		
+		void deleteTP(TradePos& obj, int count);
 		//поиск торговой позиции
-		auto findPos(TradePos pos) {
-			auto place = std::find(ListTrPos.begin(), ListTrPos.end(), pos);
-			if (place != ListTrPos.end()) {
-				std::cout << "Позиция найдена!" << std::endl;
-				return true;
-			}
-			else {
-				std::cout << "Такой позиции нет на складе!" << std::endl;
-				return false;
-			}
-		}
-		
+		auto findPos(TradePos pos);
 	private:
 		std::vector<TradePos> ListTrPos;
 	};
-	
 	//чек
 	class Cheque {
 	public:
 		Cheque(){}
-		Cheque(std::vector<TradePos> &list, Employees name, int Count);
-		void setCount(int count) {
-			Count = count;
+		Cheque(std::vector<TradePos> list, Employees name, std::string time);
+		void setList(std::vector<TradePos> list) {
+			List = list;
 		}
+		const auto getList() {
+			return List;
+		}
+		
 		const int getCount() {
-			return Count;
+			return List.size();
 		}
 		void setTime(std::string time) {
 			Time = time;
 		}
-		std::string getTime() {
+		const std::string getTime() {
 			return Time;
 		}
 		void setName(Employees name) {
 			Name = name.getName();
 		}
-		std::string getName() {
+		const std::string getName() {
 			return Name;
 		}
 		//добавление позиции в чек
-		void addPosInCheck(Stock &list, TradePos &other, Employees name, int count) {//склад, что покупаем, сколько штук
-			if (list.findPos(other) == true) {
-				List.emplace_back(other);
-				Count = count;
-				//other.setAmount(count);
-				list.deleteTP(other);
-				Name = name.getName();
-			}
-			else {
-				std::cout << "Такого товара нет!";
-			}
-			
-		}
+		void addPosInCheck(Stock& list, TradePos& other, Employees name, int count);
+		//Удаление позиции из чека
+		void deletePosInCheck(TradePos list, int count);
 		
 
 		//Вывод чека
 		void printCheque();
 
 	private:
-		std::vector<TradePos> List;//позиция в чеке
+		
+		std::vector<TradePos> List;//торговая позиция
 		std::string Name;//кто продал
 		std::string Time;//Время продажи
-		int Count;
+		
 	};
 	//система безопасности
 	class Security {
@@ -254,6 +217,30 @@ namespace model {
 	private:
 		std::vector<Employees> Humans;
 	};
+	//меню
+	class Menu {
+	public:
+		//главное меню
+		void mainMenu(std::string log) {
+			std::cout << "Добро пожаловать в ларёк!\nВведите Логин: " << std::endl;
+			getline(std::cin, log);
+			if (log == "Dir") {
+				//метод директора
+			}
+			if (log == "kl") {
+				//меню кладовщика
+			}
+			if (log == "sec") {
+				//меню охранника
+			}
+			if (log == "sel") {
+				//меню продавца
+			}
+			
 
+		}
+		//меню склада
+	private:
 
+	};
 }
