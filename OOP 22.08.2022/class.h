@@ -225,7 +225,7 @@ namespace model {
 			std::cout << "Добро пожаловать в ларёк!\nВведите Логин: " << std::endl;
 			getline(std::cin, log);
 			if (log == "Dir") {
-				//метод директора
+				//меню директора
 			}
 			if (log == "kl") {
 				//меню кладовщика
@@ -237,10 +237,24 @@ namespace model {
 				//меню продавца
 			}
 			
+		}
+		//директор
+		void menuDir() {
 
 		}
-		//меню склада
-	private:
+		//кладовщик
+		void menuStoreKeep() {
 
+		}
+		//охранник
+		void menuSec() {
+
+		}
+		//продавец
+		void menuSeller() {
+
+		}
+	private:
+		
 	};
 }

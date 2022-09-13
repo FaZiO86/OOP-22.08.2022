@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="model::Employees">
+    <Position X="10" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEQAAGAAAAAAAAACAQACAAAAABAAAAUCAAAAAA=</HashCode>
+      <FileName>class.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="model::Product">
+    <Position X="6.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAQZAAAAAAABAAAAEgAAIAAA=</HashCode>
+      <FileName>class.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="model::TradePos">
+    <Position X="8.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAIAAAAAIAKgIQAAQCAAAAAAACAAggAAAAgAAg=</HashCode>
+      <FileName>class.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="model::Stock">
+    <Position X="15.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAABAAAAAAAQAIAAAAgAECAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>class.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="model::Cheque">
+    <Position X="4.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACkAAAAAAAAAAAAAAAAAAQAAAAAAAJAAAAEAiEUAQI=</HashCode>
+      <FileName>class.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="model::Security">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAEAEAAQAAAA=</HashCode>
+      <FileName>class.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="model::Menu">
+    <Position X="13.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAgAAAAAEAAACAAAQAAAAAA=</HashCode>
+      <FileName>class.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
