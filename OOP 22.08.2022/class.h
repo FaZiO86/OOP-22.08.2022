@@ -6,7 +6,7 @@
 namespace model {
 
 	//сотрудники
-	class Employees {
+	class Employees{
 	public:
 		Employees() {}
 		Employees(int pasportID, std::string name, std::string login);
@@ -36,7 +36,7 @@ namespace model {
 		std::string Login;
 	};
 	//товары
-	class Product {
+	class Product{
 	public:
 		friend std::ostream& operator<<(std::ostream& out, const Product& r) {
 			return out << r.Name << " " << r.Color;
@@ -77,7 +77,7 @@ namespace model {
 		int Dimensions; //размер
 	};
 	//торговая позиция
-	class TradePos {
+	class TradePos{
 	public:
 		friend std::ostream& operator<<(std::ostream& out, const TradePos& r) {
 			return out << r.Product_ << r.Amount;
@@ -132,7 +132,7 @@ namespace model {
 
 	};
 	//Склад
-	class Stock {
+	class Stock{
 	public:
 		Stock(){}
 		Stock(std::vector<TradePos> list);
@@ -156,7 +156,7 @@ namespace model {
 		std::vector<TradePos> ListTrPos;
 	};
 	//чек
-	class Cheque {
+	class Cheque{
 	public:
 		Cheque(){}
 		Cheque(std::vector<TradePos> list, Employees name, std::string time);
@@ -199,7 +199,7 @@ namespace model {
 		
 	};
 	//система безопасности
-	class Security {
+	class Security{
 	public:
 		Security(){}
 		Security(std::vector<Employees> humans);
@@ -221,40 +221,104 @@ namespace model {
 	class Menu {
 	public:
 		//главное меню
-		void mainMenu(std::string log) {
-			std::cout << "Добро пожаловать в ларёк!\nВведите Логин: " << std::endl;
-			getline(std::cin, log);
-			if (log == "Dir") {
-				//меню директора
-			}
-			if (log == "kl") {
-				//меню кладовщика
-			}
-			if (log == "sec") {
-				//меню охранника
-			}
-			if (log == "sel") {
-				//меню продавца
-			}
-			
+		void mainMenu() {
+			std::string log;
+			std::cout << "Добро пожаловать в ларёк!" << std::endl; 
+			int num = 0;
+			while (num != 2) {
+
+				std::cout << "Нажмите 1 что бы ввести логин\n";
+				std::cout << "Нажмите 2 что бы выйти из программы\n";
+				std::cin >> num;
+				switch (num)
+				{
+					case 1:std::cout << "Введите логин: "; std::cin >> log; break;
+
+					case 2: num = 2; break;
+					
+				default:
+					break;
+				}
+				if (log == "dir") {
+					//меню директора
+					menuDir();
+				}
+				else if (log == "kl") {
+					//меню кладовщика
+					menuStoreKeep();
+				}
+				else if (log == "sel") {
+					//меню продавца
+					menuSeller();
+				}
+				else {
+					std::cout << "Не верный логин!\n";
+				}
+			};
 		}
 		//директор
 		void menuDir() {
+			int num = 0;
+			while (num != 5){
+				std::cout << "1) посмотреть всех сотрудников\n"
+					<< "2) добавить сотрудника\n"
+					<< "3) удалить сотрудника\n"
+					<< "4) Посмотреть содержимое склада\n"
+					<< "5) выход из программы\n";
+				std::cin >> num;
+				switch (num){				//не доделано, не знаю как обратиться к методу того или иного класса.
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+				case 5:num = 5; break;
+				
+				default:
+					break;
+				}
+			}
 
 		}
 		//кладовщик
 		void menuStoreKeep() {
+			int num = 0;
+			while (num != 4) {
+				std::cout << "1) добавить товар на склад\n"
+					<< "2) удалить товар со склада\n"
+					<< "3) Посмотреть содержимое склада\n"
+					<< "4) выход из программы\n";
+				std::cin >> num;
+				switch (num) {				//не доделано, не знаю как обратиться к методу того или иного класса.
+				case 1:
+				case 2:
+				case 3:
+				case 4:num = 4; break;
 
-		}
-		//охранник
-		void menuSec() {
-
+				default:
+					break;
+				}
+			}
 		}
 		//продавец
-		void menuSeller() {
+		 void menuSeller() {
+			 int num = 0;
+			 while (num != 4) {
+				 std::cout << "1) добавить позицию в чек \n"
+					 << "2) удалить позицию из чека\n"
+					 << "3) Посмотреть содержимое склада\n"
+					 << "4) выход из программы\n";
+				 std::cin >> num;
+				 switch (num) {				//не доделано, не знаю как обратиться к методу того или иного класса.
+				 case 1:
+				 case 2:
+				 case 3:
+				 case 4:num = 4; break;
 
+				 default:
+					 break;
+				 }
+			 }
 		}
-	private:
 		
 	};
 }
